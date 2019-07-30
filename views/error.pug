@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  div(class='jumbotron jumbotron-fluid bg-warning')
+    h1(class='display-4')= message
+    h2(class='display-1')= error.status
+  div(class='container-fluid')
+    pre #{error.stack}
