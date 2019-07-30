@@ -1,8 +1,18 @@
 doctype html
+mixin item(title, url)
+  li(class="nav-item") 
+    a(href=url class= url===path?"nav-link active" : "nav-link")=title
+
 html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    ul(class="nav nav-pills my-1 ml-1")
+      +item('Home page', '/')
+      +item('News', '/news')
+      +item('Quiz', '/quiz')
+      +item('Admin page', '/admin')
+
     block content
