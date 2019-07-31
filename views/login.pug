@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div(class="jumbotron jumbotron-fluid bg-dark text-white")
+    h1(class='display-1')= title
+  div(class='container')
+    form(method='post')
+        div(class='form-group')
+            label Login
+            input(type="text" class="form-control" name='login')
+        div(class='form-group')
+            label Password
+            input(type="password" class="form-control" name='password')
+        input(class='btn btn-primary' type='submit' value='Sign In')
+        
