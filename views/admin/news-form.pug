@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    div(class="jumbotron jumbotron-fluid bg-dark text-white")
+        h1(class='display-1')= title
+    div(class='container')
+
+        form(method='post')
+            div(class='form-group')
+                label News title
+                input(type="text" class="form-control" name='title' value=body.title || '')
+                if errors !== undefined
+                    each message in errors.errors
+                        if message.path === 'title'
+                            small(class="form-text text-danger") News must have title
+            div(class='form-group')
+                label Content
+                textarea(name="description" class="form-control" style='width:100%')=body.description || ''
+                if errors !== undefined
+                    each message in errors.errors
+                        if message.path === 'description'
+                            small(class="form-text text-danger") News must have content
+            input(class='btn btn-primary' type='submit' value='Add news')
+        
