@@ -4,4 +4,21 @@ block content
   div(class="jumbotron jumbotron-fluid bg-success text-white")
     h1(class='display-1')= title
   div(class='container')
-    p Welcome to #{title}
+    if show
+      h1(class='display-4 mb-3') Jaka jest twoja ulubiona pora roku?
+      form(method="post")
+        fieldset(class="form-group")
+          each item, index in data
+            div(class="form-check mb-3")
+              input(class="form-check-input" type="radio" id=`quizRadios${index}` name='quiz' style="cursor:pointer;" value=item._id)
+              label(class="form-check-label" for=`quizRadios${index}` style="cursor:pointer;")= item.title
+          button("submit" class="btn btn-primary btn-block") Zagłosuj
+    else
+      h1(class="display-4") Wyniki naszego głosowania:
+      ul(class="list-group")
+        each item in data
+          li(class="list-group-item") #{item.title} głosów: #{item.vote} 
+            span(class="badge badge-pill badge-primary") #{Math.round(item.vote/sum*100)}%
+        li(class="list-group-item disabled") Głosów oddano: 
+          span(class="badge badge-pill badge-secondary") #{sum}
+            
