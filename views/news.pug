@@ -4,4 +4,15 @@ block content
   div(class="jumbotron jumbotron-fluid bg-info text-white")
     h1(class='display-1')= title
   div(class='container')
-    p Welcome to #{title}
+    form(method='get' class="form-inline")
+      div(class="input-group mb-3")
+        input(type='text' class="form-control" placeholder="Search" name='search' value=search)
+        div(class="input-group-append")
+          <button type="submit" class="btn btn-info">Search</button>
+
+    each item in data
+      div(class='card mb-3 text-center')
+        h1(class='card-header')=item.title
+        div(class='card-body')
+          p(class='card-text')=item.description
+        footer(class='blockquote-footer')=item.created

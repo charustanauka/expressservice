@@ -1,9 +1,36 @@
 const express = require('express');
 const router = express.Router();
+const News = require('../models/news');
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('news', { title: 'News' });
+
+
+
+    const search = req.query.search;
+    console.log(req.query.search);
+
+    if (search === 'undefined' || search === '') {
+        const findNews = News
+            .find()
+            .sort({ created: -1 })
+            ;
+
+        findNews.exec((err, data) => {
+            res.render('news', { title: 'News', data, search });
+        })
+    } else {
+        const findNews = News
+            .find({ title: new RegExp(search, 'i') })
+            .sort({ created: -1 })
+            ;
+
+        findNews.exec((err, data) => {
+            res.render('news', { title: 'News', data, search });
+        })
+    }
+
 });
 
 module.exports = router;
